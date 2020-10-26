@@ -3,7 +3,7 @@ version: ${project.version}
 main: me.inanis.plugins.crucialextension.CrucialExtension
 api-version: 1.16
 authors: [ Inanis ]
-description: A simple test project
+description: A Minecraft Java Plugin for 1.16 bukkit-based servers as a light-weight alternative to Essentials
 
 commands:
   heal:

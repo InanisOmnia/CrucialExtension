@@ -6,7 +6,7 @@
 
     <groupId>me.Inanis.plugins</groupId>
     <artifactId>CrucialExtension</artifactId>
-    <version>1.0-SNAPSHOT</version> <!--  Change version here!  -->
+    <version>0.1.0-SNAPSHOT</version> <!--  Change version here!  -->
 
     <packaging>jar</packaging>
 
