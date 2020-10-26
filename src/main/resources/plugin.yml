@@ -1,0 +1,33 @@
+name: CrucialExtension
+version: ${project.version}
+main: me.inanis.plugins.crucialextension.CrucialExtension
+api-version: 1.16
+authors: [ Inanis ]
+description: A simple test project
+
+commands:
+  heal:
+    description: Back up to full health
+    usage: /<command>
+    aliases: [health, hearts]
+
+  feed:
+    description: Back up to full hunger
+    usage: /<command>
+
+  god:
+    description: Toggle invincibility
+    usage: /<command>
+
+  fly:
+    description: Start flying!
+    usage: /<command>
+
+  vault:
+    description: Open a personal vault
+    usage: /<command> [number]
+
+  vanish:
+    description: Hide yourself from everyone
+    usage: /vanish [player]
+    aliases: [v]
