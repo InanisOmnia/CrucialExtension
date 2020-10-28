@@ -1,4 +1,4 @@
-package me.inanis.plugins.crucialextension.commands;
+package me.inanis.plugins.crucialextension.commands.admin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class Heal implements CommandExecutor {
+public class Feed implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -16,19 +16,19 @@ public class Heal implements CommandExecutor {
             Player player = (Player) sender;
 
             if (args.length < 1) {
-                if (player.hasPermission("CrucialExtension.heal.self")){
-                    player.setHealth(20);
-                    player.sendMessage("Thou hast been healed!");
+                if (player.hasPermission("CrucialExtension.feed.self")){
+                    player.setFoodLevel(20);
+                    player.sendMessage("Thou hast been saturated!");
                 } else {
                     player.sendMessage(ChatColor.DARK_RED + "You do not have permission to use this command");
                 }
             } else {
-                if (player.hasPermission("CrucialExtension.heal.others")){
+                if (player.hasPermission("CrucialExtension.feed.others")){
                     Player target = Bukkit.getPlayerExact(args[0]);
-                    if (target instanceof Player) {
-                        target.setHealth(20);
-                        target.sendMessage("Thou hast been healed");
-                        player.sendMessage("Gave " + target.getDisplayName() + " full health");
+                    if (target != null) {
+                        target.setFoodLevel(20);
+                        target.sendMessage("Thou hast been saturated");
+                        player.sendMessage("Gave " + target.getDisplayName() + " full hunger");
                     } else {
                         player.sendMessage("Player by that name could not be found");
                     }
@@ -42,10 +42,10 @@ public class Heal implements CommandExecutor {
                 sender.sendMessage("Not possible mate, you're the console");
             } else {
                 Player target = Bukkit.getPlayerExact(args[0]);
-                if (target instanceof Player) {
+                if (target != null) {
                     target.setFoodLevel(20);
-                    target.sendMessage("Thou hast been healed");
-                    sender.sendMessage("Gave " + target.getDisplayName() + " full health");
+                    target.sendMessage("Thou hast been saturated");
+                    sender.sendMessage("Gave " + target.getDisplayName() + " full hunger");
                 } else {
                     sender.sendMessage("Player by that name could not be found");
                 }

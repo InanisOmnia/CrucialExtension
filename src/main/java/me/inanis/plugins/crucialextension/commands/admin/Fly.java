@@ -1,4 +1,4 @@
-package me.inanis.plugins.crucialextension.commands;
+package me.inanis.plugins.crucialextension.commands.admin;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

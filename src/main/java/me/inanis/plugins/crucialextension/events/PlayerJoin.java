@@ -26,7 +26,6 @@ public class PlayerJoin implements Listener {
             e.setJoinMessage("");
         }
 
-
         // hide vanish players from new joiner
         for (int i = 0; i < plugin.invisible_list.size(); i++){
             player.hidePlayer(plugin, plugin.invisible_list.get(i));

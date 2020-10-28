@@ -8,26 +8,40 @@ description: A Minecraft Java Plugin for 1.16 bukkit-based servers as a light-we
 commands:
   heal:
     description: Back up to full health
-    usage: /<command>
-    aliases: [health, hearts]
+    usage: /<command> [player]
+    aliases: []
 
   feed:
     description: Back up to full hunger
-    usage: /<command>
+    usage: /<command> [player]
+    aliases: []
 
   god:
     description: Toggle invincibility
     usage: /<command>
+    aliases: []
 
   fly:
     description: Start flying!
     usage: /<command>
+    aliases: []
 
   vault:
     description: Open a personal vault
-    usage: /<command> [number]
+    usage: /<command>
+    aliases: [ pv ]
 
   vanish:
     description: Hide yourself from everyone
-    usage: /vanish [player]
+    usage: /<command> [player]
     aliases: [v]
+
+  whisper:
+    description: Send a private message to a player
+    usage: /<command> player message
+    aliases: [ w, pm, privatemessage ]
+
+  clearchat:
+    description: Clears the chat by sending blank lines
+    usage: /<command>
+    aliases: [ cleanchat ]

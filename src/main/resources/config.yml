@@ -38,11 +38,15 @@ join-message: ''
 # Use {PLAYER} to use the player's name
 # Use Minecraft colour codes to change the colour
 # leave blank for no message
-# Example: '§Goodbye §6{PLAYER} §2!'
+# Example: '§2Goodbye §6{PLAYER} §2!'
 leave-message: ''
 
-
-
+# Change the message that is displayed when the chat is cleared
+# Use {PLAYER} to use the player's name
+# Use Minecraft colour codes to change the colour
+# leave blank for no message
+# Example: '§2Chat cleared by §6{PLAYER}§2, thanks!'
+chat-clear-message: ''
 
 
 #####################################################################################
