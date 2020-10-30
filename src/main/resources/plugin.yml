@@ -4,27 +4,26 @@ main: me.inanis.plugins.crucialextension.CrucialExtension
 api-version: 1.16
 authors: [ Inanis ]
 description: A Minecraft Java Plugin for 1.16 bukkit-based servers as a light-weight alternative to Essentials
+#softdepend: [PlaceholderAPI] # This is used, if your plugin works without PlaceholderAPI.
+#depend: [PlaceholderAPI] # If your plugin requires PlaceholderAPI, to work, use this.
+
 
 commands:
   heal:
     description: Back up to full health
     usage: /<command> [player]
-    aliases: []
 
   feed:
     description: Back up to full hunger
     usage: /<command> [player]
-    aliases: []
 
   god:
     description: Toggle invincibility
     usage: /<command>
-    aliases: []
 
   fly:
     description: Start flying!
     usage: /<command>
-    aliases: []
 
   vault:
     description: Open a personal vault
@@ -45,3 +44,11 @@ commands:
     description: Clears the chat by sending blank lines
     usage: /<command>
     aliases: [ cleanchat ]
+
+  kit:
+    description: Get a kit
+    usage: /<command> [name] [player]
+
+  gmsp:
+    description: Gamemode spectator
+    usage: /<command> [player]

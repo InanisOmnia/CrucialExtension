@@ -3,7 +3,12 @@ package me.inanis.plugins.crucialextension;
 import me.inanis.plugins.crucialextension.commands.*;
 import me.inanis.plugins.crucialextension.commands.admin.*;
 import me.inanis.plugins.crucialextension.commands.chat.*;
+import me.inanis.plugins.crucialextension.commands.gamemode.Gmsp;
+import me.inanis.plugins.crucialextension.commands.kit.Kit;
+import me.inanis.plugins.crucialextension.config.ConfigManager;
+import me.inanis.plugins.crucialextension.config.KitConfigManager;
 import me.inanis.plugins.crucialextension.events.*;
+import me.inanis.plugins.crucialextension.storage.VaultStorageManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,6 +19,7 @@ import java.util.Objects;
 public final class CrucialExtension extends JavaPlugin implements Listener {
 
     public ConfigManager cfgm;
+    public KitConfigManager kitConfigManager;
     public VaultStorageManager vaultStorageManager;
 
     public ArrayList<Player> invisible_list = new ArrayList<>();
@@ -47,11 +53,12 @@ public final class CrucialExtension extends JavaPlugin implements Listener {
     }
 
     private void registerEvents() {
-        getServer().getPluginManager().registerEvents(new OnDeath(), this);
+        getServer().getPluginManager().registerEvents(new OnDeath(this), this);
         getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
         getServer().getPluginManager().registerEvents(new PlayerLeave(this), this);
-        getServer().getPluginManager().registerEvents(new PlayerMove(), this);
+        getServer().getPluginManager().registerEvents(new PlayerMove(this), this);
         getServer().getPluginManager().registerEvents(new InvClose(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerBedEnter(this), this);
     }
 
     private void registerCommands() {
@@ -70,14 +77,20 @@ public final class CrucialExtension extends JavaPlugin implements Listener {
         // chat commands
         Objects.requireNonNull(getCommand("whisper")).setExecutor(new Whisper());
         Objects.requireNonNull(getCommand("clearchat")).setExecutor(new Clearchat(this));
+
+        // kit commands
+        Objects.requireNonNull(getCommand("kit")).setExecutor(new Kit(this));
+
+        // gamemode commands
+        Objects.requireNonNull(getCommand("gmsp")).setExecutor(new Gmsp(this));
     }
 
     public void loadConfig() {
-        getConfig().options().copyDefaults();
-        saveDefaultConfig();
-
         cfgm = new ConfigManager(this);
         cfgm.setup();
+
+        kitConfigManager = new KitConfigManager(this);
+        kitConfigManager.setup();
     }
 
     public void loadStorage() {

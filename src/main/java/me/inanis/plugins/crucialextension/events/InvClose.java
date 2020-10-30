@@ -16,7 +16,7 @@ public class InvClose implements Listener {
     @EventHandler
     public void invClose(InventoryCloseEvent e) {
         if(e.getView().getTitle().equalsIgnoreCase("Your Vault")) {
-            plugin.vaultStorageManager.vaultshash.put(e.getPlayer().getUniqueId().toString(), e.getInventory().getContents());
+            plugin.vaultStorageManager.vaults.put(e.getPlayer().getUniqueId().toString(), e.getInventory().getContents());
         }
     }
 }

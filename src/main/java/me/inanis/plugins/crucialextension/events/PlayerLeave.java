@@ -1,5 +1,6 @@
 package me.inanis.plugins.crucialextension.events;
 
+import me.inanis.plugins.crucialextension.formatting.ConfigVarFormatting;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,7 +19,6 @@ public class PlayerLeave implements Listener {
     public void onPlayerQuit(PlayerQuitEvent e) {
         Player player = e.getPlayer();
         String leaveMessage = plugin.getConfig().getString("leave-message");
-        leaveMessage = leaveMessage.replaceAll("\\{PLAYER\\}", player.getDisplayName());
-        e.setQuitMessage(leaveMessage);
+        e.setQuitMessage(ConfigVarFormatting.parsePlayer(leaveMessage, player.getDisplayName()));
     }
 }

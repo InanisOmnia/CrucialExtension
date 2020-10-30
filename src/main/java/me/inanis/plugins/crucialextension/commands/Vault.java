@@ -26,8 +26,8 @@ public class Vault implements CommandExecutor {
             if (player.hasPermission("CrucialExtension.vault")) {
 
                 Inventory inv = Bukkit.getServer().createInventory(player, 54, "Your Vault");
-                if (plugin.vaultStorageManager.vaultshash.containsKey(player.getUniqueId().toString())) {
-                    inv.setContents(plugin.vaultStorageManager.vaultshash.get(player.getUniqueId().toString()));
+                if (plugin.vaultStorageManager.vaults.containsKey(player.getUniqueId().toString())) {
+                    inv.setContents(plugin.vaultStorageManager.vaults.get(player.getUniqueId().toString()));
                 }
                 player.openInventory(inv);
 
@@ -37,6 +37,6 @@ public class Vault implements CommandExecutor {
         } else {
             sender.sendMessage("The console cannot perform this command");
         }
-        return false;
+        return true;
     }
 }

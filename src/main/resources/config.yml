@@ -32,22 +32,49 @@
 # Use Minecraft colour codes to change the colour
 # leave blank for no message
 # Example: '§2Oh look! §6{PLAYER} §2joined the server!'
-join-message: ''
+join-message: '§2Oh look! §6{PLAYER} §2joined the server!'
 
 # Change the message that is displayed when a user leaves
 # Use {PLAYER} to use the player's name
 # Use Minecraft colour codes to change the colour
 # leave blank for no message
 # Example: '§2Goodbye §6{PLAYER} §2!'
-leave-message: ''
+leave-message: '§2Goodbye §6{PLAYER} §2!'
+
+# Change the message that is displayed when a user dies
+# Use {PLAYER} to use the player's name
+# Use Minecraft colour codes to change the colour
+# leave blank for no message
+# Example: '§2Nice death §6{PLAYER}§2!'
+# global, everyone on the server sees it
+global-death-message: '§2Nice death §6{PLAYER}§2!'
+# player, only the player sees this
+player-death-message: '§2Hey everyone! §6{PLAYER}§2 just died!'
 
 # Change the message that is displayed when the chat is cleared
 # Use {PLAYER} to use the player's name
 # Use Minecraft colour codes to change the colour
 # leave blank for no message
 # Example: '§2Chat cleared by §6{PLAYER}§2, thanks!'
-chat-clear-message: ''
+chat-clear-message: '§2Chat cleared by §6{PLAYER}§2, thanks!'
 
+# Change the message that is displayed when a user attempts to move without the correct permission
+# Use {PLAYER} to use the player's name
+# Use Minecraft colour codes to change the colour
+# leave blank for no message
+# Example: '§2Careful §6{PLAYER}§2, your not allowed to move!'
+no-move-message: '§2Careful §6{PLAYER}§2, your not allowed to move!'
+
+# allow one player sleep
+# true or false
+one-player-sleep: True
+
+# Change the message that is displayed when a user attempts to move without the correct permission
+# Use {PLAYER} to use the player's name
+# Use Minecraft colour codes to change the colour
+# leave blank for no message
+# Example: '§2Careful §6{PLAYER}§2, your not allowed to move!'
+one-player-sleep-message: '§6{PLAYER}§2 is sleeping, daytime it becomes!'
 
 #####################################################################################
 #  Colors                                                                           #
@@ -67,7 +94,7 @@ chat-clear-message: ''
 #    White (white)	              §f	    \u00A7f	    16777215	FFFFFF          #
 #    Gray (gray)	              §7	    \u00A77	    11184810	AAAAAA          #
 #    Dark Gray (dark_gray)	      §8	    \u00A78	    5592405	    555555          #
-#    Black (black)	              §0	     \u00A70	0	        000000          #
+#    Black (black)	              §0	    \u00A70	    0	        000000          #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #   Formats                                                                         #
 #     Description	          Chat Code	MOTD Code                                   #
