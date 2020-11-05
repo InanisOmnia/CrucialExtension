@@ -47,9 +47,9 @@ leave-message: '§2Goodbye §6{PLAYER} §2!'
 # leave blank for no message
 # Example: '§2Nice death §6{PLAYER}§2!'
 # global, everyone on the server sees it
-global-death-message: '§2Nice death §6{PLAYER}§2!'
+global-death-message: '§2Hey everyone! §6{PLAYER}§2 just died!'
 # player, only the player sees this
-player-death-message: '§2Hey everyone! §6{PLAYER}§2 just died!'
+player-death-message: '§2Nice death §6{PLAYER}§2!'
 
 # Change the message that is displayed when the chat is cleared
 # Use {PLAYER} to use the player's name
@@ -68,12 +68,12 @@ no-move-message: '§2Careful §6{PLAYER}§2, your not allowed to move!'
 # allow one player sleep
 # true or false
 one-player-sleep: True
-
-# Change the message that is displayed when a user attempts to move without the correct permission
+# Change the message that is displayed when a user sleeps
+# Ignored when one-player-sleep is inactive
 # Use {PLAYER} to use the player's name
 # Use Minecraft colour codes to change the colour
 # leave blank for no message
-# Example: '§2Careful §6{PLAYER}§2, your not allowed to move!'
+# Example: '§6{PLAYER}§2 is sleeping, daytime it becomes!'
 one-player-sleep-message: '§6{PLAYER}§2 is sleeping, daytime it becomes!'
 
 #####################################################################################

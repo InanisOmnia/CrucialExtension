@@ -3,7 +3,7 @@ package me.inanis.plugins.crucialextension;
 import me.inanis.plugins.crucialextension.commands.*;
 import me.inanis.plugins.crucialextension.commands.admin.*;
 import me.inanis.plugins.crucialextension.commands.chat.*;
-import me.inanis.plugins.crucialextension.commands.gamemode.Gmsp;
+import me.inanis.plugins.crucialextension.commands.gamemode.*;
 import me.inanis.plugins.crucialextension.commands.kit.Kit;
 import me.inanis.plugins.crucialextension.config.ConfigManager;
 import me.inanis.plugins.crucialextension.config.KitConfigManager;
@@ -82,7 +82,10 @@ public final class CrucialExtension extends JavaPlugin implements Listener {
         Objects.requireNonNull(getCommand("kit")).setExecutor(new Kit(this));
 
         // gamemode commands
-        Objects.requireNonNull(getCommand("gmsp")).setExecutor(new Gmsp(this));
+        Objects.requireNonNull(getCommand("gmsp")).setExecutor(new Gmsp());
+        Objects.requireNonNull(getCommand("gms")).setExecutor(new Gms());
+        Objects.requireNonNull(getCommand("gmc")).setExecutor(new Gmc());
+        Objects.requireNonNull(getCommand("gma")).setExecutor(new Gma());
     }
 
     public void loadConfig() {

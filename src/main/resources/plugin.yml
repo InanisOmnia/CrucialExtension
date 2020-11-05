@@ -52,3 +52,12 @@ commands:
   gmsp:
     description: Gamemode spectator
     usage: /<command> [player]
+  gms:
+    description: Gamemode survival
+    usage: /<command> [player]
+  gmc:
+    description: Gamemode creative
+    usage: /<command> [player]
+  gma:
+    description: Gamemode adventure
+    usage: /<command> [player]
