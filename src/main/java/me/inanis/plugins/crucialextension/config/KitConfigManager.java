@@ -1,92 +1,55 @@
 package me.inanis.plugins.crucialextension.config;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import me.inanis.plugins.crucialextension.CrucialExtension;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
+import me.inanis.plugins.crucialextension.core.kits.Kit;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class KitConfigManager {
+public class KitConfigManager extends JsonConfig {
 
-    private final CrucialExtension plugin;
+    public Map<String, Kit> kits = new HashMap<>();
 
-    public KitConfigManager(CrucialExtension plugin) { this.plugin = plugin; }
 
-    public Map<String, ItemStack[]> kits = new HashMap<>();
-    public FileConfiguration kitCfg;
-    public File kitFile;
-    //--------------------------
+    public KitConfigManager(CrucialExtension plugin, String fileName) {
+        super(plugin, fileName);
 
-    public void setup(){
-        if (!plugin.getDataFolder().exists()) {
-            plugin.getDataFolder().mkdir();
-        }
+        ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+        items.add(new ItemStack(Material.STICK, 5));
+        ItemStack[] isArray = items.toArray(new ItemStack[items.size()]);
 
-        // vault storage
-        kitFile = new File(plugin.getDataFolder(), "kits.yml");
-        if (!kitFile.exists()) {
-            try {
-                kitFile.createNewFile();
-                plugin.getLogger().info(ChatColor.GREEN + "kits.yml file has been created");
-            } catch (IOException e){
-                plugin.getLogger().info(ChatColor.DARK_RED + "Could not create kits.yml file");
-            }
-        }
-
-        loadKits();
-    }
-
-    // vaults
-    public FileConfiguration getKitCfg() {
-        return kitCfg;
-    }
-
-    public Map<String, ItemStack[]> getKits() {
-        return kits;
-    }
-
-    public void saveKits() {
-        if (!kits.isEmpty()) {
-            try {
-
-                for (Map.Entry<String, ItemStack[]> entry : kits.entrySet()) {
-                    kitCfg.set("data." + entry.getKey(), entry.getValue());
-                }
-
-                kitCfg.save(kitFile);
-                plugin.getLogger().info(ChatColor.GREEN + "kits.yml file has been saved");
-            } catch(IOException e) {
-                plugin.getLogger().info(ChatColor.DARK_RED + "Could not save kits.yml file");
-            }
-        } else {
-            plugin.getLogger().info(ChatColor.YELLOW + "playerVaults hashmap is empty and has been ignored");
-        }
+        kits.put("one", new Kit(isArray, "stickOne", Material.STICK));
     }
 
     public void loadKits() {
-        kitCfg = YamlConfiguration.loadConfiguration(kitFile);
-        if (kitCfg.contains("data")) {
+        load();
 
-            kitCfg.getConfigurationSection("data").getKeys(false).forEach(key -> {
-                @SuppressWarnings("unchecked")
-                ItemStack[] content = ((List<ItemStack>) kitCfg.get("data." + key)).toArray(new ItemStack[0]);
-                kits.put(key, content);
-            });
-
-            plugin.getLogger().info(ChatColor.GREEN + "kits.yml file has been loaded");
-        } else {
-            plugin.getLogger().info(ChatColor.YELLOW + "kits.yml file is empty and has been ignored");
+        JSONObject content = getContent();
+        JSONArray data = (JSONArray) content.get("data");
+        for (int i=0; i<data.size(); i++) {
+            JSONObject obj = (JSONObject) data.get(i);
+            kits.put((String) obj.get("name"), new Kit(obj));
         }
     }
 
-    public void reloadVaults() {
-        kits.clear();
-        loadKits();
+    public void saveKits() {
+        ObjectMapper mapper = new ObjectMapper();
+        kits.forEach((k, v) -> {
+            try {
+                String json = mapper.writeValueAsString(v);
+                plugin.getLogger().info(json);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        });
     }
+
 
 }

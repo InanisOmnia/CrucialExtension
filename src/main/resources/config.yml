@@ -76,6 +76,10 @@ one-player-sleep: True
 # Example: '§6{PLAYER}§2 is sleeping, daytime it becomes!'
 one-player-sleep-message: '§6{PLAYER}§2 is sleeping, daytime it becomes!'
 
+
+
+
+
 #####################################################################################
 #  Colors                                                                           #
 #    (Minecraft Name)	          Chat Code MOTD Code	Decimal	    Hexadecimal     #

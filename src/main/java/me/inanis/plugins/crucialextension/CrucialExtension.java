@@ -1,11 +1,13 @@
 package me.inanis.plugins.crucialextension;
 
-import me.inanis.plugins.crucialextension.commands.*;
 import me.inanis.plugins.crucialextension.commands.admin.*;
 import me.inanis.plugins.crucialextension.commands.chat.*;
 import me.inanis.plugins.crucialextension.commands.gamemode.*;
+import me.inanis.plugins.crucialextension.commands.inventory.Clearinv;
+import me.inanis.plugins.crucialextension.commands.inventory.Vault;
 import me.inanis.plugins.crucialextension.commands.kit.Kit;
 import me.inanis.plugins.crucialextension.config.ConfigManager;
+import me.inanis.plugins.crucialextension.config.JsonConfig;
 import me.inanis.plugins.crucialextension.config.KitConfigManager;
 import me.inanis.plugins.crucialextension.events.*;
 import me.inanis.plugins.crucialextension.storage.VaultStorageManager;
@@ -22,6 +24,8 @@ public final class CrucialExtension extends JavaPlugin implements Listener {
     public KitConfigManager kitConfigManager;
     public VaultStorageManager vaultStorageManager;
 
+    public JsonConfig jsonCfgExample;
+
     public ArrayList<Player> invisible_list = new ArrayList<>();
 
     @Override
@@ -30,10 +34,10 @@ public final class CrucialExtension extends JavaPlugin implements Listener {
         getLogger().info("Starting");
 
         // get config
-        loadConfig();
+        loadCConfig();
 
         // setup the storage
-        loadStorage();
+        loadCStorage();
 
         // register events and commands
         registerEvents();
@@ -47,7 +51,9 @@ public final class CrucialExtension extends JavaPlugin implements Listener {
         // Plugin shutdown logic
         getLogger().info("Stopping");
 
-        saveStorage();
+        saveCStorage();
+
+        saveCConfig();
 
         getLogger().info("Stopped");
     }
@@ -63,7 +69,9 @@ public final class CrucialExtension extends JavaPlugin implements Listener {
 
     private void registerCommands() {
 
+        // Inventory
         Objects.requireNonNull(getCommand("vault")).setExecutor(new Vault(this));
+        Objects.requireNonNull(getCommand("clearinv")).setExecutor(new Clearinv());
 
         // admin playing commands
         Objects.requireNonNull(getCommand("heal")).setExecutor(new Heal());
@@ -71,7 +79,7 @@ public final class CrucialExtension extends JavaPlugin implements Listener {
         Objects.requireNonNull(getCommand("god")).setExecutor(new God());
         Objects.requireNonNull(getCommand("fly")).setExecutor(new Fly());
 
-        // admin mod commands
+        // mod commands
         Objects.requireNonNull(getCommand("vanish")).setExecutor(new Vanish(this));
 
         // chat commands
@@ -88,20 +96,32 @@ public final class CrucialExtension extends JavaPlugin implements Listener {
         Objects.requireNonNull(getCommand("gma")).setExecutor(new Gma());
     }
 
-    public void loadConfig() {
+    public void loadCConfig() {
         cfgm = new ConfigManager(this);
         cfgm.setup();
 
-        kitConfigManager = new KitConfigManager(this);
+        kitConfigManager = new KitConfigManager(this, "kits");
         kitConfigManager.setup();
+        kitConfigManager.loadKits();
+
+//        jsonCfgExample = new JsonConfig(this, "test");
+//        jsonCfgExample.setup();
+//        jsonCfgExample.load();
     }
 
-    public void loadStorage() {
+    public void saveCConfig(){
+        cfgm.save();
+//        jsonCfgExample.save();
+
+        kitConfigManager.saveKits();
+    }
+
+    public void loadCStorage() {
         vaultStorageManager = new VaultStorageManager(this);
         vaultStorageManager.setup();
     }
 
-    public void saveStorage() {
+    public void saveCStorage() {
         vaultStorageManager.saveVaults();
     }
 }

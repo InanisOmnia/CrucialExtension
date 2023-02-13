@@ -14,4 +14,8 @@ public class ConfigManager {
         plugin.getConfig().options().copyDefaults(true);
         plugin.saveDefaultConfig();
     }
+
+    public void save() {
+        plugin.saveConfig();
+    }
 }

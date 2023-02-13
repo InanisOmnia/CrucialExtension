@@ -1,4 +1,4 @@
-package me.inanis.plugins.crucialextension.commands;
+package me.inanis.plugins.crucialextension.commands.inventory;
 
 import me.inanis.plugins.crucialextension.CrucialExtension;
 import org.bukkit.Bukkit;

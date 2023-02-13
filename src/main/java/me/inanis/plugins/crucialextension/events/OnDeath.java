@@ -18,6 +18,7 @@ public class OnDeath implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent e) {
         Player player = e.getEntity();
+
         String playerMessage = plugin.getConfig().getString("player-death-message");
         player.sendMessage(ConfigVarFormatting.parsePlayer(playerMessage, player.getDisplayName()));
 

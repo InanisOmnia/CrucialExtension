@@ -25,30 +25,26 @@ commands:
     description: Start flying!
     usage: /<command>
 
-  vault:
-    description: Open a personal vault
-    usage: /<command>
-    aliases: [ pv ]
-
   vanish:
     description: Hide yourself from everyone
     usage: /<command> [player]
     aliases: [v]
 
+  kit:
+    description: Get a kit
+    usage: /<command> [name] [player]
+
+  # chat
   whisper:
     description: Send a private message to a player
     usage: /<command> player message
     aliases: [ w, pm, privatemessage ]
-
   clearchat:
     description: Clears the chat by sending blank lines
     usage: /<command>
     aliases: [ cleanchat ]
 
-  kit:
-    description: Get a kit
-    usage: /<command> [name] [player]
-
+  # gamemode
   gmsp:
     description: Gamemode spectator
     usage: /<command> [player]
@@ -61,3 +57,12 @@ commands:
   gma:
     description: Gamemode adventure
     usage: /<command> [player]
+
+  # inventory
+  vault:
+    description: Open a personal vault
+    usage: /<command>
+    aliases: [ pv ]
+  clearinv:
+    description: Clear inventory
+    usage: /<command>
